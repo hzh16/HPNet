@@ -136,6 +136,16 @@ class Trainer(object):
         if self.opt.dataset == 'ABC':
             from dataloader.ABCDataset import ABCDataset
             Dataset = ABCDataset
+        elif self.opt.dataset == 'WHUTLS':
+            import sys
+            BASEDIR = os.path.dirname(os.path.abspath(__file__))
+            BASEDIR = os.path.dirname(BASEDIR)
+            BASEDIR = os.path.dirname(BASEDIR)
+            sys.path.append(os.path.join(BASEDIR, "dataloaders"))
+
+            print(sys.path)
+            from WHUTLSDataset import WHUTLSDataset
+            Dataset = WHUTLSDataset
 
         train_dataset = Dataset(DATA_PATH,
                                 TRAIN_DATASET,
